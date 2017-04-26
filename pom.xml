@@ -28,7 +28,8 @@
 		<docker.build.dir>${project.build.directory}/dockerBuildDir</docker.build.dir>
 		<maven.docker.plugin.version>0.20.1</maven.docker.plugin.version>
 
-		<docker.image.name>pio/${project.artifactId}:${project.version}</docker.image.name>
+		<!--<docker.image.name>piowyrwa/${project.artifactId}:${project.version}</docker.image.name>-->
+		<docker.image.name>piowyrwa/${project.artifactId}:0.0.2</docker.image.name>
 	</properties>
 
 	<dependencies>

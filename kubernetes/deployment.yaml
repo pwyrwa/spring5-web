@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: spring5-web-deployment
+spec:
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      # generated from the deployment name
+      labels:
+        app: spring5-web
+    spec:
+      containers:
+      - name: spring5-web
+        image: piowyrwa/spring5-web:0.0.2
+        ports:
+        - containerPort: 8080
