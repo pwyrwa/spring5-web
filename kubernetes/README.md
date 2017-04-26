@@ -1,6 +1,7 @@
 ## Kubernetes
 
 ### Create deployment
+NOTE: Make sure image is pushed to the remote repo - can't use local repository
 
 ```bash
 kubectl create -f deployment.yaml
