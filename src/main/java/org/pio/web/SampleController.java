@@ -28,6 +28,7 @@ public class SampleController {
 
     @RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> status() {
+        LOG.info("Status called - 2");
         return Collections.singletonMap("status", "OK");
     }
 

@@ -12,6 +12,6 @@ spec:
     spec:
       containers:
       - name: spring5-web
-        image: piowyrwa/spring5-web:0.0.2
+        image: piowyrwa/spring5-web:0.0.5
         ports:
         - containerPort: 8080

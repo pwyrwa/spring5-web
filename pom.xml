@@ -5,7 +5,7 @@
 
 	<groupId>org.pio</groupId>
 	<artifactId>spring5-web</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.6</version>
 	<packaging>jar</packaging>
 
 	<name>spring5-web</name>
@@ -29,7 +29,6 @@
 		<maven.docker.plugin.version>0.20.1</maven.docker.plugin.version>
 
 		<docker.image.name>piowyrwa/${project.artifactId}:${project.version}</docker.image.name>
-		<!--<docker.image.name>piowyrwa/${project.artifactId}:0.0.2</docker.image.name>-->
 	</properties>
 
 	<dependencies>
@@ -159,11 +158,6 @@
 						<artifactId>docker-maven-plugin</artifactId>
 						<version>${maven.docker.plugin.version}</version>
 						<configuration>
-							<!--<registry>${docker.registry}</registry>-->
-							<!--<authConfig>-->
-								<!--<username>${env.SEGDS_REGISTRY_USERNAME}</username>-->
-								<!--<password>${env.SEGDS_REGISTRY_PASSWORD}</password>-->
-							<!--</authConfig>-->
 							<verbose>true</verbose>
 							<images>
 								<image>
@@ -184,7 +178,7 @@
 							</execution>
 							<execution>
 								<id>push</id>
-								<phase>deploy</phase>
+								<phase>install</phase>
 								<goals>
 									<goal>push</goal>
 								</goals>
