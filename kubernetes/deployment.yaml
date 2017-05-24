@@ -12,6 +12,11 @@ spec:
     spec:
       containers:
       - name: spring5-web
-        image: piowyrwa/spring5-web:0.0.5
+        image: piowyrwa/spring5-web:0.0.6
+        command: [ "java", "-jar", "service.jar"]
         ports:
         - containerPort: 8080
+        env:
+        - name: environment
+          value: qa
+

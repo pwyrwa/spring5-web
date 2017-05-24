@@ -19,7 +19,7 @@ kubectl describe service spring5-web
 ```
 * Locally NodePort will be the one showing
 
-Note: minikube runs by default on 192.168.99.100 (ttp://192.168.99.100:<Port>/pio-web/status)
+Note: minikube runs by default on 192.168.99.100 (http://192.168.99.100:<Port>/pio-web/status)
 
 ### Logs
 
@@ -32,10 +32,10 @@ kubectl logs <pod> -f
 ### Deployment (with deployment.yml) - not replicaSet
 
 * Update, push docker with change
-* update deployment.yml with new version of docker image
+* update deployment.yaml with new version of docker image
 
 ```bash
-kubectl apply -f deployment.yml --record
+kubectl apply -f deployment.yaml --record
 ```
 
 * Pods will be different now

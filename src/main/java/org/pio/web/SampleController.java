@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.collect.ImmutableMap;
+
 /**
  * Sample controller
  */
@@ -21,15 +23,22 @@ public class SampleController {
     private final static Logger LOG = LoggerFactory.getLogger(SampleController.class);
 
     private final String sampleData;
+    private final String environment;
 
-    public SampleController(@Value("${sample.data}") String sampleData) {
+    public SampleController(@Value("${sample.data}") String sampleData,
+            @Value("${environment}") String environment) {
         this.sampleData = sampleData;
+        this.environment = environment;
     }
+
 
     @RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> status() {
-        LOG.info("Status called - 2");
-        return Collections.singletonMap("status", "OK");
+        return new ImmutableMap.Builder<String, String>()
+                .put("status", "OK")
+                .put("env", environment)
+                .put("data", sampleData)
+                .build();
     }
 
     @RequestMapping(value = "/data", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
