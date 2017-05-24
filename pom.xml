@@ -5,7 +5,7 @@
 
 	<groupId>org.pio</groupId>
 	<artifactId>spring5-web</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<packaging>jar</packaging>
 
 	<name>spring5-web</name>
@@ -39,6 +39,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
 		</dependency>
 
 		<dependency>
