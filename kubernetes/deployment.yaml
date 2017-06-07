@@ -4,6 +4,11 @@ metadata:
   name: spring5-web-deployment
 spec:
   replicas: 2 # tells deployment to run 2 pods matching the template
+  strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 1
   template: # create pods using pod definition in this template
     metadata:
       # generated from the deployment name
@@ -12,11 +17,18 @@ spec:
     spec:
       containers:
       - name: spring5-web
-        image: piowyrwa/spring5-web:0.0.6
-        command: [ "java", "-jar", "service.jar"]
+        image: piowyrwa/spring5-web:0.0.7
+        imagePullPolicy: IfNotPresent
+#        command: [ "java", "-jar", "service.jar"]
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
         ports:
         - containerPort: 8080
         env:
-        - name: environment
-          value: qa
-
+        - name: JAVA_OPTS
+          value: -Dspring.config.location=file:/etc/config/override-qa.properties
+      volumes:
+      - name: config-volume
+        configMap:
+          name: spring5-web-config
