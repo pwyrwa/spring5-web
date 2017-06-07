@@ -24,11 +24,13 @@ public class SampleController {
 
     private final String sampleData;
     private final String environment;
+    private final String version;
 
-    public SampleController(@Value("${sample.data}") String sampleData,
-            @Value("${environment}") String environment) {
+    public SampleController(@Value("${sample.data}") String sampleData, @Value("${environment}") String environment,
+            @Value("${version:unset}")String version) {
         this.sampleData = sampleData;
         this.environment = environment;
+        this.version = version;
     }
 
 
@@ -36,6 +38,7 @@ public class SampleController {
     public Map<String, String> status() {
         return new ImmutableMap.Builder<String, String>()
                 .put("status", "OK")
+                .put("config-version", version)
                 .put("env", environment)
                 .put("data", sampleData)
                 .build();
