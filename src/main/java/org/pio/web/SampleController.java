@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableMap;
  * Sample controller
  */
 @RestController
-@RequestMapping("/pio-web")
+@RequestMapping("/")
 public class SampleController {
 
     private final static Logger LOG = LoggerFactory.getLogger(SampleController.class);
@@ -26,7 +26,8 @@ public class SampleController {
     private final String environment;
     private final String version;
 
-    public SampleController(@Value("${sample.data}") String sampleData, @Value("${environment}") String environment,
+    public SampleController(@Value("${sample.data}") String sampleData,
+                            @Value("${environment}") String environment,
             @Value("${version:unset}")String version) {
         this.sampleData = sampleData;
         this.environment = environment;
@@ -34,10 +35,11 @@ public class SampleController {
     }
 
 
-    @RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/healthcheck", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> status() {
         return new ImmutableMap.Builder<String, String>()
                 .put("status", "OK")
+                .put("VERSION", "VERSION-18")
                 .put("config-version", version)
                 .put("env", environment)
                 .put("data", sampleData)

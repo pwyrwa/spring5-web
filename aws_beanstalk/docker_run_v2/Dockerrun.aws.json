@@ -1,0 +1,25 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [],
+  "containerDefinitions": [
+    {
+      "name": "web-app",
+      "image": "piowyrwa/spring5-web:0.0.14",
+      "environment": [
+        {
+          "name": "environment",
+          "value": "testing"
+        }
+      ],
+      "essential": true,
+      "memory": 512,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080
+        }
+      ],
+      "mountPoints": []
+    }
+  ]
+}

@@ -5,7 +5,7 @@
 
 	<groupId>org.pio</groupId>
 	<artifactId>spring5-web</artifactId>
-	<version>0.0.8</version>
+	<version>0.0.19</version>
 	<packaging>jar</packaging>
 
 	<name>spring5-web</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.BUILD-SNAPSHOT</version>
+		<version>2.0.0.M3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -26,7 +26,7 @@
 
 		<maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
 		<docker.build.dir>${project.build.directory}/dockerBuildDir</docker.build.dir>
-		<maven.docker.plugin.version>0.20.1</maven.docker.plugin.version>
+		<maven.docker.plugin.version>0.22.1</maven.docker.plugin.version>
 
 		<docker.image.name>piowyrwa/${project.artifactId}:${project.version}</docker.image.name>
 	</properties>
@@ -173,6 +173,10 @@
 									</build>
 								</image>
 							</images>
+							<authConfig>
+								<username>${docker-io-username}</username>
+								<password>${docker-io-password}</password>
+							</authConfig>
 						</configuration>
 						<executions>
 							<execution>
