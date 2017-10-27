@@ -1,0 +1,62 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars:
+    aws_region: us-west-2
+    app_name: "pio-spring-5"
+    app_stack_name: "{{ app_name }}"
+    bucket_name: "{{ app_name }}-releases"
+    environment_name: production
+  tasks:
+
+#    - name: Generate artifact hash
+#      command: "./script/release-tag"
+#      changed_when: False
+#      register: artifact_hash
+
+#    - name: Push Image to ECR
+#      command: "make push UPSTREAM={{ prereqs.stack_outputs.Repository }}:{{ artifact_hash.stdout }}"
+#      changed_when: False
+
+    - name: Create scratch dir for release artifact
+      command: "mktemp -d"
+      register: tmp_dir
+      changed_when: False
+
+    - debug:
+        msg: "System {{ tmp_dir }}"
+
+    - name: Create Dockerrun.aws.json for release artifact
+      template:
+        src: deploy/Dockerrun.aws.json
+        dest: "{{ tmp_dir.stdout }}/Dockerrun.aws.json"
+#      vars:
+#        image: "{{ prereqs.stack_outputs.Repository }}:{{ artifact_hash.stdout }}"
+
+    - name: Create release zip file
+      command: "zip -r release.zip ."
+      args:
+        chdir: "{{ tmp_dir.stdout }}"
+      changed_when: False
+
+#    - name: Upload release zip to S3
+#      s3:
+#        region: "{{ aws_region }}"
+#        mode: put
+#        src: "{{ tmp_dir.stdout }}/release.zip"
+#        bucket: "{{ prereqs.stack_outputs.S3Bucket }}"
+#        object: "{{ app_name }}-{{ artifact_hash.stdout }}.zip"
+
+#    - name: Deploy application stack
+#      cloudformation:
+#        state: present
+#        stack_name: "{{ app_stack_name }}"
+#        region: "{{ aws_region }}"
+#        disable_rollback: true
+#        template: "cloudformation/app.json"
+#        template_parameters:
+#          S3Bucket: "{{ prereqs.stack_outputs.S3Bucket }}"
+#          S3ZipKey: "{{ app_name }}-{{ artifact_hash.stdout }}.zip"
+#          RackEnv: "{{ environment_name }}"
+#          HealthCheckPath: "/ping"

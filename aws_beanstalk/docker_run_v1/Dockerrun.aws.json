@@ -1,0 +1,10 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "piowyrwa/spring5-web:0.0.14",
+    "Update": "true"
+  },
+  "Ports": [{
+    "ContainerPort": "8080"
+  }]
+}
