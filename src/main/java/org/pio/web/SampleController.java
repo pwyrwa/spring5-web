@@ -37,9 +37,13 @@ public class SampleController {
 
     @RequestMapping(value = "/healthcheck", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> status() {
+
+        String implementationVersion = getClass().getPackage().getImplementationVersion();
+
+
         return new ImmutableMap.Builder<String, String>()
                 .put("status", "OK")
-                .put("VERSION", "VERSION-18")
+                .put("VERSION", implementationVersion != null ? implementationVersion: "DEBUG_MODE")
                 .put("config-version", version)
                 .put("env", environment)
                 .put("data", sampleData)
