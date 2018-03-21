@@ -1,6 +1,13 @@
 ## Kubernetes
 
 
+### Minikube setup (one time only)
+
+ * https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7
+ 
+### Do this every time 
+ * Run this: `eval $(minikube docker-env)`
+
 ### Config map
 * Create config map from override-qa.properties
 
@@ -27,7 +34,7 @@ kubectl describe service spring5-web
 ```
 * Locally NodePort will be the one showing
 
-Note: minikube runs by default on 192.168.99.100 (http://192.168.99.100:<Port>/pio-web/status)
+Note: minikube runs by default on 192.168.99.100 (http://192.168.99.100:<Port>/healthcheckc)
 
 ### Logs
 
@@ -50,7 +57,7 @@ kubectl apply -f deployment.yaml --record
 
 ### Update configuration and deployment
 
-* Create config map from override-qa.properties with updaated properties
+* Create config map from override-qa.properties with updated properties
 
 
 * Update config map

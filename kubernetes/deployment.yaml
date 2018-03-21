@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: spring5-web
-        image: piowyrwa/spring5-web:0.0.7
+        image: piowyrwa/spring5-web:0.0.20
         imagePullPolicy: IfNotPresent
 #        command: [ "java", "-jar", "service.jar"]
         volumeMounts:
