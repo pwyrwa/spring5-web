@@ -1,0 +1,5 @@
+apiVersion: v1
+appVersion: "1.0"
+description: Spring 5 web helm chart
+name: spring5web
+version: 0.1.0
